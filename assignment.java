@@ -1,4 +1,3 @@
-//create a class called asignment
 import java.time.LocalDate;
 public class assignment implements java.io.Serializable{
     String name;
