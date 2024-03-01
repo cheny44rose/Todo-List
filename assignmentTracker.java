@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +11,7 @@ import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 public class assignmentTracker{
-    public static final Dimension SCENE_VIEWER_SIZE = new Dimension(750, 600);
+    public static final Dimension SCENE_VIEWER_SIZE = new Dimension(1500, 600);
     public static ArrayList<assignment> assignments;
     
     public static void main(String[] args){
@@ -65,6 +66,7 @@ public class assignmentTracker{
             public void actionPerformed(ActionEvent e) {
                 JLabel name = new JLabel("Assignment Name");
                 JLabel date = new JLabel("Due Date (YYYY-MM-DD)");
+                JLabel time = new JLabel("DueTime (HH:MM)");
                 JLabel dept = new JLabel("Department");
                 JFrame addAssignmentFrame = new JFrame();
                 addAssignmentFrame.setSize(600, 600);
@@ -77,8 +79,9 @@ public class assignmentTracker{
                 dueDate.setBounds(50, 100, 200, 30);
                 JTextField course = new JTextField();
                 course.setBounds(50, 150, 200, 30);
+                JTextField dueTime = new JTextField();
+                dueTime.setBounds(50, 200, 200, 30);
                 JButton submit = new JButton("Submit");
-                submit.setBounds(100, 200, 100, 30);
                 
                 textBoxPanel.setLayout(new BoxLayout(textBoxPanel, BoxLayout.Y_AXIS));
                 textBoxPanel.add(name);
@@ -87,6 +90,8 @@ public class assignmentTracker{
                 textBoxPanel.add(dueDate);
                 textBoxPanel.add(dept);
                 textBoxPanel.add(course);
+                textBoxPanel.add(time);
+                textBoxPanel.add(dueTime);
                 addAssignmentFrame.add(textBoxPanel, BorderLayout.NORTH);
 
                 buttonPanel.add(submit);
@@ -96,7 +101,8 @@ public class assignmentTracker{
                         String name = assignmentName.getText();
                         LocalDate date = LocalDate.parse(dueDate.getText());
                         String classCourse = course.getText();
-                        assignment newAssignment = new assignment(name, date, classCourse);
+                        String time = dueTime.getText();
+                        assignment newAssignment = new assignment(name, date, classCourse, time);
                         assignments.add(newAssignment);
                         addAssignmentFrame.dispose();
                         writeToFile();
