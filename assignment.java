@@ -1,19 +1,19 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 public class assignment implements java.io.Serializable{
     String name;
-    LocalDate dueDate;
+    LocalDateTime dueDate;
     String course;
     String time;
-    public assignment(String name, LocalDate dueDate, String course, String time){
+    public assignment(String name, LocalDateTime dueDate, String course){
         this.name = name;
         this.dueDate = dueDate;
         this.course = course;
-        this.time = time;
     }
     public String getName(){
         return name;
     }
-    public LocalDate getDueDate(){
+    public LocalDateTime getDueDate(){
         return dueDate;
     }
     public String getCourse(){

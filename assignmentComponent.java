@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.JComponent;
 
@@ -44,51 +45,51 @@ public class assignmentComponent extends JComponent{
         int count1 = 0;
         int count2 = 0;
         int count3 = 0;
-        // for(int i=0; i<assignments.size(); i++){
-        for(assignment a: assignments){
-            LocalDateTime anotherDateTime = LocalDateTime.of(a.getDueDate(), LocalTime.MIDNIGHT);
-            Duration duration = Duration.between(currentTime, anotherDateTime);
-            if(duration.toHours()+13<0){
-                g2.setColor(colorMap.get(a.getCourse()));
-                g2.fillRect(90, count1*HEIGHT+50+addr1, WIDTH, BHEIGHT);
-                g2.setColor(Color.BLACK);
-                g2.drawRect(90, count1*HEIGHT+50+addr1, WIDTH, BHEIGHT);
-                g2.setColor(Color.BLACK);
-                g2.drawString(a.getName(), 95, count1*HEIGHT+70+addr1);
-                g2.drawString(a.getDueDate().toString(), 95, count1*HEIGHT+90+addr1);
-                g2.drawString(a.getCourse(), 95, count1*HEIGHT+110+addr1);
-                g2.drawString("Due in: " + duration.toHours()+" Hours", 95, count1*HEIGHT+130+addr1);
-                addr1 +=30;
-                count1++;
-            }
-            else if(duration.toDays()<2){
-                g2.setColor(colorMap.get(a.getCourse()));
-                g2.fillRect(550, count2*HEIGHT+50+addr2, WIDTH, BHEIGHT);
-                g2.setColor(Color.BLACK);
-                g2.drawRect(550, count2*HEIGHT+50+addr2, WIDTH, BHEIGHT);
-                g2.setColor(Color.BLACK);
-                g2.drawString(a.getName(), 555, count2*HEIGHT+70+addr2);
-                g2.drawString(a.getDueDate().toString(), 555, count2*HEIGHT+90+addr2);
-                g2.drawString(a.getCourse(), 555, count2*HEIGHT+110+addr2);
-                if(duration.toHours()<0)
-                    g2.drawString("Due at: 11:59", 555, count2*HEIGHT+130+addr2);
-                else
-                    g2.drawString("Due in: " + duration.toHours()+" Hours", 555, count2*HEIGHT+130+addr2);
-                addr2 +=30;
-                count2++;
-            }
-            else{
-                g2.setColor(colorMap.get(a.getCourse()));
-                g2.fillRect(1110, count3*HEIGHT+50+addr3, WIDTH, BHEIGHT);
-                g2.setColor(Color.BLACK);
-                g2.drawRect(1110, count3*HEIGHT+50+addr3, WIDTH, BHEIGHT);
-                g2.setColor(Color.BLACK);
-                g2.drawString(a.getName(), 1115, count3*HEIGHT+70+addr3);
-                g2.drawString(a.getDueDate().toString(), 1115, count3*HEIGHT+90+addr3);
-                g2.drawString(a.getCourse(), 1115, count3*HEIGHT+110+addr3);
-                g2.drawString("Due in: " + duration.toDays()+" Days", 1115, count3*HEIGHT+130+addr3);
-                addr3 +=30;
-                count3++;
+        if(!assignments.isEmpty()){
+            for(assignment a: assignments){
+                Duration duration = Duration.between(currentTime, a.getDueDate());
+                if(duration.toHours()<=0){
+                    g2.setColor(colorMap.get(a.getCourse()));
+                    g2.fillRect(90, count1*HEIGHT+50+addr1, WIDTH, BHEIGHT);
+                    g2.setColor(Color.BLACK);
+                    g2.drawRect(90, count1*HEIGHT+50+addr1, WIDTH, BHEIGHT);
+                    g2.setColor(Color.BLACK);
+                    g2.drawString(a.getName(), 95, count1*HEIGHT+70+addr1);
+                    g2.drawString(a.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yy hh:mm a")).toString(), 95, count1*HEIGHT+90+addr1);
+                    g2.drawString(a.getCourse(), 95, count1*HEIGHT+110+addr1);
+                    g2.drawString("Due in: " + duration.toHours()+" Hours", 95, count1*HEIGHT+130+addr1);
+                    addr1 +=30;
+                    count1++;
+                }
+                else if(duration.toDays()<=2){
+                    g2.setColor(colorMap.get(a.getCourse()));
+                    g2.fillRect(550, count2*HEIGHT+50+addr2, WIDTH, BHEIGHT);
+                    g2.setColor(Color.BLACK);
+                    g2.drawRect(550, count2*HEIGHT+50+addr2, WIDTH, BHEIGHT);
+                    g2.setColor(Color.BLACK);
+                    g2.drawString(a.getName(), 555, count2*HEIGHT+70+addr2);
+                    g2.drawString(a.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yy hh:mm a")).toString().toString(), 555, count2*HEIGHT+90+addr2);
+                    g2.drawString(a.getCourse(), 555, count2*HEIGHT+110+addr2);
+                    if(duration.toHours()<0)
+                        g2.drawString("Due at: 11:59", 555, count2*HEIGHT+130+addr2);
+                    else
+                        g2.drawString("Due in: " + duration.toHours()+" Hours", 555, count2*HEIGHT+130+addr2);
+                    addr2 +=30;
+                    count2++;
+                }
+                else{
+                    g2.setColor(colorMap.get(a.getCourse()));
+                    g2.fillRect(1110, count3*HEIGHT+50+addr3, WIDTH, BHEIGHT);
+                    g2.setColor(Color.BLACK);
+                    g2.drawRect(1110, count3*HEIGHT+50+addr3, WIDTH, BHEIGHT);
+                    g2.setColor(Color.BLACK);
+                    g2.drawString(a.getName(), 1115, count3*HEIGHT+70+addr3);
+                    g2.drawString(a.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yy hh:mm a")).toString(), 1115, count3*HEIGHT+90+addr3);
+                    g2.drawString(a.getCourse(), 1115, count3*HEIGHT+110+addr3);
+                    g2.drawString("Due in: " + duration.toDays()+" Days", 1115, count3*HEIGHT+130+addr3);
+                    addr3 +=30;
+                    count3++;
+                }
             }
         }
     }
@@ -104,7 +105,6 @@ public class assignmentComponent extends JComponent{
         colorMap.put("ENGD", Color.LIGHT_GRAY);
         colorMap.put("EMGT", Color.DARK_GRAY);
         colorMap.put("JAPNL", Color.BLUE);
-        colorMap.put("KOR", Color.WHITE);
         colorMap.put("EP", Color.lightGray);
 
     }
