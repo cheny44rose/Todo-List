@@ -88,7 +88,7 @@ public class assignmentTracker{
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JLabel name = new JLabel("Assignment Name");
-                JLabel date = new JLabel("Due Date (MM-dd-yyyy HH:mm Military Time)");
+                JLabel date = new JLabel("Due Date (MM-dd-yy HH:mm Military Time)");
                 JLabel dept = new JLabel("Department");
                 JFrame addAssignmentFrame = new JFrame();
                 addAssignmentFrame.setSize(600, 600);
@@ -118,7 +118,7 @@ public class assignmentTracker{
                     public void keyPressed(KeyEvent e) {
                         if(e.getKeyCode() == KeyEvent.VK_ENTER){
                             String name = assignmentName.getText();
-                            LocalDateTime date = LocalDateTime.parse(dueDate.getText(),DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"));
+                            LocalDateTime date = LocalDateTime.parse(dueDate.getText(),DateTimeFormatter.ofPattern("MM-dd-yy HH:mm"));
                             String classCourse = course.getText();
                             assignment newAssignment = new assignment(name, date, classCourse);
                             assignments.add(newAssignment);
@@ -131,7 +131,7 @@ public class assignmentTracker{
                 submit.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         String name = assignmentName.getText();
-                        LocalDateTime date = LocalDateTime.parse(dueDate.getText(),DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"));
+                        LocalDateTime date = LocalDateTime.parse(dueDate.getText(),DateTimeFormatter.ofPattern("MM-dd-yy HH:mm"));
                         String classCourse = course.getText();
                         assignment newAssignment = new assignment(name, date, classCourse);
                         assignments.add(newAssignment);

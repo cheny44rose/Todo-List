@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class assignmentComponent extends JComponent{
     private static int HEIGHT = 70;
     private static int BHEIGHT = 90;
-	private static int WIDTH = 180;
+	private static int WIDTH = 240;
     static HashMap<String, Color> colorMap = new HashMap<String, Color>();
     private ArrayList<assignment> assignments;
     public assignmentComponent(ArrayList<assignment> assignments) {
@@ -50,14 +50,14 @@ public class assignmentComponent extends JComponent{
                 Duration duration = Duration.between(currentTime, a.getDueDate());
                 if(duration.toHours()<=0){
                     g2.setColor(colorMap.get(a.getCourse()));
-                    g2.fillRect(90, count1*HEIGHT+50+addr1, WIDTH, BHEIGHT);
+                    g2.fillRect(60, count1*HEIGHT+50+addr1, WIDTH, BHEIGHT);
                     g2.setColor(Color.BLACK);
-                    g2.drawRect(90, count1*HEIGHT+50+addr1, WIDTH, BHEIGHT);
+                    g2.drawRect(60, count1*HEIGHT+50+addr1, WIDTH, BHEIGHT);
                     g2.setColor(Color.BLACK);
-                    g2.drawString(a.getName(), 95, count1*HEIGHT+70+addr1);
-                    g2.drawString(a.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yy hh:mm a")).toString(), 95, count1*HEIGHT+90+addr1);
-                    g2.drawString(a.getCourse(), 95, count1*HEIGHT+110+addr1);
-                    g2.drawString("Due in: " + duration.toHours()+" Hours", 95, count1*HEIGHT+130+addr1);
+                    g2.drawString(a.getName(), 65, count1*HEIGHT+70+addr1);
+                    g2.drawString(a.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yy hh:mm a")).toString(), 65, count1*HEIGHT+90+addr1);
+                    g2.drawString(a.getCourse(), 65, count1*HEIGHT+110+addr1);
+                    g2.drawString("Due in: " + duration.toHours()+" Hours", 65, count1*HEIGHT+130+addr1);
                     addr1 +=30;
                     count1++;
                 }
@@ -96,7 +96,7 @@ public class assignmentComponent extends JComponent{
     public void makeHashmapColor(){
         colorMap.put("MA", Color.RED);
         colorMap.put("CSSE", Color.YELLOW);
-        colorMap.put("ECE", Color.GREEN);
+        colorMap.put("ENGLH", Color.GREEN);
         colorMap.put("BE", Color.BLUE);
         colorMap.put("CHE", Color.ORANGE);
         colorMap.put("CE", Color.PINK);
