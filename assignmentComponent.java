@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class assignmentComponent extends JComponent{
     private static int HEIGHT = 70;
-    private static int BHEIGHT = 90;
+    private static int BHEIGHT = 110;
 	private static int WIDTH = 240;
     static HashMap<String, Color> colorMap = new HashMap<String, Color>();
     private ArrayList<assignment> assignments;
@@ -68,8 +68,9 @@ public class assignmentComponent extends JComponent{
                     g2.setColor(Color.BLACK);
                     g2.drawString(a.getName(), 65, count1*HEIGHT+70+addr1);
                     g2.drawString(a.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yy hh:mm a")).toString(), 65, count1*HEIGHT+90+addr1);
-                    g2.drawString(a.getCourse(), 65, count1*HEIGHT+110+addr1);
-                    g2.drawString("Due in: " + duration.toHours()+" Hours", 65, count1*HEIGHT+130+addr1);
+                    g2.drawString(a.getDueDate().getDayOfWeek().toString(), 65, count1*HEIGHT+110+addr1);
+                    g2.drawString(a.getCourse(), 65, count1*HEIGHT+130+addr1);
+                    g2.drawString("Due in: " + duration.toHours()+" Hours", 65, count1*HEIGHT+150+addr1);
                     addr1 +=30;
                     count1++;
                 }
@@ -81,11 +82,12 @@ public class assignmentComponent extends JComponent{
                     g2.setColor(Color.BLACK);
                     g2.drawString(a.getName(), 525, count2*HEIGHT+70+addr2);
                     g2.drawString(a.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yy hh:mm a")).toString().toString(), 525, count2*HEIGHT+90+addr2);
-                    g2.drawString(a.getCourse(), 525, count2*HEIGHT+110+addr2);
+                    g2.drawString(a.getDueDate().getDayOfWeek().toString(), 525, count2*HEIGHT+110+addr2);
+                    g2.drawString(a.getCourse(), 525, count2*HEIGHT+130+addr2);
                     if(duration.toHours()<0)
-                        g2.drawString("Due at: 11:59", 555, count2*HEIGHT+130+addr2);
+                        g2.drawString("Due at: 11:59", 555, count2*HEIGHT+150+addr2);
                     else
-                        g2.drawString("Due in: " + duration.toHours()+" Hours", 525, count2*HEIGHT+130+addr2);
+                        g2.drawString("Due in: " + duration.toHours()+" Hours", 525, count2*HEIGHT+150+addr2);
                     addr2 +=30;
                     count2++;
                 }
@@ -97,8 +99,9 @@ public class assignmentComponent extends JComponent{
                     g2.setColor(Color.BLACK);
                     g2.drawString(a.getName(), 1085, count3*HEIGHT+70+addr3);
                     g2.drawString(a.getDueDate().format(DateTimeFormatter.ofPattern("MM-dd-yy hh:mm a")).toString(), 1085, count3*HEIGHT+90+addr3);
-                    g2.drawString(a.getCourse(), 1085, count3*HEIGHT+110+addr3);
-                    g2.drawString("Due in: " + duration.toDays()+" Days", 1085, count3*HEIGHT+130+addr3);
+                    g2.drawString(a.getDueDate().getDayOfWeek().toString(), 1085, count3*HEIGHT+110+addr3);
+                    g2.drawString(a.getCourse(), 1085, count3*HEIGHT+130+addr3);
+                    g2.drawString("Due in: " + duration.toDays()+" Days", 1085, count3*HEIGHT+150+addr3);
                     addr3 +=30;
                     count3++;
                 }
