@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 public class assignmentTracker{
-    public static final Dimension SCENE_VIEWER_SIZE = new Dimension(1500, 600);
+    public static final Dimension SCENE_VIEWER_SIZE = new Dimension(1900, 600);
     public static ArrayList<assignment>  assignments = new ArrayList<assignment>();
     
     public static void main(String[] args){
